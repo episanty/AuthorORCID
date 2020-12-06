@@ -142,7 +142,9 @@
 %
 \def\@author@present@group#1#2#3{%
   \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
-  \doauthorworcid{#2}{}{#3}{\@affil@present@group}%
+  \doauthorworcid{#2}{%
+    %%% whatever ends up in this argument within \@author@present@script above.
+  }{#3}{\@affil@present@group}%
   \advance\@tempcnta\m@ne
 }%
 %
@@ -176,6 +178,19 @@
  \@booleanfalse\collaboration@sw
 }%
 \makeatother
+
+%\makeatletter
+%\renewcommand\frontmatter@author{% implicit #1
+% \@author@def{}% implicit #2
+% \def\@orcid{{}}
+%}%
+%\makeatother
+
+
+
+%\newcommand\frontmatter@author{% implicit #1
+% \@author@def{}% implicit #2
+%}%
 
 %\def\@author@init{%
 % \let\@author\@author@cleared
