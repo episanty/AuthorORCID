@@ -1,0 +1,126 @@
+\documentclass[%
+  twoside,
+  %floatfix,
+  reprint,
+  amsmath,amssymb,
+  aps,
+  pra,
+  nofootinbib,
+  showpacs,
+  superscriptaddress,
+  a4paper,
+  %draft
+]{revtex4-1}
+
+
+\usepackage{graphicx}% 
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+
+
+
+
+% Use accented characters
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+% For draft stage
+\usepackage{lipsum}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  bookmarks=false,
+  %bookmarks=true,
+  colorlinks,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  plainpages=false,
+  pdfpagelabels,
+  final,
+  breaklinks=true
+]{hyperref}
+\hypersetup{
+pdftitle={The Author ORCID package}, 
+pdfauthor={Emilio Pisanty}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\orcid}[1]{%
+  \href{%
+    https://orcid.org/#1%
+  }{%
+   \,\protect\includegraphics[width=8pt]{ORCID-icon.png}\,%
+  }%
+}
+
+
+\graphicspath{{./}} % specifies the path for the figures
+\allowdisplaybreaks
+
+
+
+\begin{document}
+
+
+
+\title{The Author ORCID package}
+
+
+\author{Emilio Pisanty\,\orcid{0000-0003-0598-8524}}
+\email{emilio.pisanty@mbi-berlin.de}
+\affiliation{Max Born Institute for Nonlinear Optics and Short Pulse Spectroscopy, Max Born Strasse 2a, D-12489 Berlin, Germany}
+
+
+\date{\today}
+
+
+
+\begin{abstract}
+The Author ORCID package is a \LaTeX package for the RevTeX class, which handles the ORCID attribution for authors.
+\end{abstract}
+
+\maketitle
+
+{\color{gray}
+\lipsum[1]
+}
+
+
+
+
+
+\section*{Author ORCIDs}
+\vspace{-1mm}
+\begin{itemize}[
+  itemsep=-1mm,
+  leftmargin=\dimexpr0.3cm+\labelsep\relax,
+  label={\smash{\includegraphics[width=8pt]{ORCID-icon.png}}}
+  ]
+\item Emilio Pisanty:
+   \href{https://orcid.org/0000-0003-0598-8524}{0000-0003-0598-8524}
+\end{itemize}
+
+
+
+\bibliographystyle{arthur} 
+\bibliography{references}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
