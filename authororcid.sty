@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{custom}[2013/01/13 Custom Package]
+\ProvidesPackage{authororcid}[2020/12/06 Author ORCID]
 
 \RequirePackage{lmodern}
 
@@ -23,18 +23,60 @@
 
 \ProcessOptions\relax
 
-%% Traditional LaTeX or TeX follows...
-% ...
 
-\newlength{\pardefault}
-\setlength{\pardefault}{\parindent}
-\newcommand{\neverindent}{ \setlength{\parindent}{0pt} }
-\newcommand{\autoindent}{ \setlength{\parindent}{\pardefault} }
 
-\if@neverindent
-\neverindent
-\fi
 
-% ...
+\definecolor{orcidgreen}{rgb}{0.65098041,0.80784315,0.22352941}
+
+
+
+
+
+\newcommand{\orcidlogo}[1]{
+\resizebox{#1}{!}{
+\begin{tikzpicture}[scale=0.010]
+\fill [orcidgreen]
+  (256,128)
+    .. controls (256,57.3)  and (198.7,0)   .. (128,0)
+    .. controls (57.3,0)    and (0,57.3)    .. (0,128) 
+    .. controls (0,198.7)   and (57.3,256)  .. (128,256)
+    .. controls (198.7,256) and (256,198.7) .. (256,128)
+    ;
+
+\fill [white]
+  (86.3,69.8)--(70.9,69.8)
+             --(70.9,176.9)
+             --(86.3,176.9)
+             --(86.3,128.5)
+             --(86.3,69.8)
+  ;
+
+\fill [white]
+  (88.7,199.2)
+    .. controls (88.7,193.7) and (84.2,189.1) .. (78.6,189.1)
+    .. controls (73,189.1)   and (68.5,193.7) .. (68.5,199.2)
+    .. controls (68.5,204.8) and (73,209.3)   .. (78.6,209.3)
+    .. controls (84.2,209.3) and (88.7,204.7) .. (88.7,199.2)
+  ;
+
+\fill [white]
+  (108.9,176.9)
+  --(150.5,176.9)
+  .. controls (190.1,176.9) and (207.5,148.6) ..(207.5,123.3)
+  .. controls (207.5,95.8) and (186,69.7) .. (150.7,69.7)
+  --(108.9,69.7)
+  --(108.9,176.9)
+  (124.3,83.6)
+  --(148.8,83.6)
+  .. controls (183.7,83.6)  and (191.7,110.1) .. (191.7,123.3)
+  .. controls (191.7,144.8) and (178,163)     .. (148,163)
+  --(124.3,163)
+  --(124.3,83.6)
+  ;
+\end{tikzpicture}
+}
+}
+
+
 
 \endinput
