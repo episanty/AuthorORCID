@@ -29,31 +29,31 @@
 
 
 %%%%%%%%% https://tex.stackexchange.com/a/82318/13423
-
-\def\moveto(#1,#2){%
-  \pgfpathmoveto{\pgfpoint{#1 pt}{#2 pt}}}
-
-\def\curveto(#1,#2)(#3,#4)(#5,#6){%
-  \pgfpathcurveto{\pgfpoint{#1 pt}{#2 pt}}{\pgfpoint{#3 pt}{#4 pt}}{\pgfpoint{#5 pt}{#6 pt}}}
-
-%\let\psset=\tikzset
-\def\pscustom[#1]{\tikzset{#1}}
-\tikzset{
-  xunit/.style={x={(#1,0)}},
-  yunit/.style={y={(0,#1)}},
-  runit/.style={},
-  linecolor/.style={color=#1},
-  linewidth/.style={line width=#1},
-}
-
-\def\newrgbcolor#1#2{\definecolor{#1}{RGB}{#2}}
-\def\pspicture(#1,#2){\tikzpicture}
-\def\endpspicture{%
-\pgfusepath{stroke}
-\endtikzpicture}
-\let\newpath=\relax
-
-
+%
+%\def\moveto(#1,#2){%
+%  \pgfpathmoveto{\pgfpoint{#1 pt}{#2 pt}}}
+%
+%\def\curveto(#1,#2)(#3,#4)(#5,#6){%
+%  \pgfpathcurveto{\pgfpoint{#1 pt}{#2 pt}}{\pgfpoint{#3 pt}{#4 pt}}{\pgfpoint{#5 pt}{#6 pt}}}
+%
+%%\let\psset=\tikzset
+%\def\pscustom[#1]{\tikzset{#1}}
+%\tikzset{
+%  xunit/.style={x={(#1,0)}},
+%  yunit/.style={y={(0,#1)}},
+%  runit/.style={},
+%  linecolor/.style={color=#1},
+%  linewidth/.style={line width=#1},
+%}
+%
+%\def\newrgbcolor#1#2{\definecolor{#1}{RGB}{#2}}
+%\def\pspicture(#1,#2){\tikzpicture}
+%\def\endpspicture{%
+%\pgfusepath{stroke}
+%\endtikzpicture}
+%\let\newpath=\relax
+%
+%
 
 
 
@@ -137,32 +137,11 @@ The Author ORCID package is a \LaTeX package for the RevTeX class, which handles
 \examplecommand
 
 
-\def\svgwidth{60pt}
-\input{ORCIDlogo.tex}
-
-blah hah
-
-%\input{ORCID_iD.tex}
-
 
 \definecolor{orcidgreen}{rgb}{0.65098041,0.80784315,0.22352941}
-
-
+%
+\resizebox{8pt}{!}{
 \begin{tikzpicture}[scale=0.010]
-%\draw[gray, thick] (-1,2) -- (2,-4);
-%\draw[gray, thick] (-1,-1) -- (2,2);
-%\filldraw[black] (0,0) circle (2pt) node[anchor=west] {Intersection point};
-
-%\draw [red] plot [smooth cycle] coordinates {
-%  (256,128) (256,57.3)(198.7,0)(128,0)(57.3,0)(0,57.3)(0,128)(0,198.7)(57.3,256)(128,256)(198.7,256)(256,198.7)(256,128)
-%  };
-
-
-%\draw [red] plot [smooth cycle] coordinates {
-%  (256,128) 
-%  (256,57.3) .. controls (198.7,0) .. (128,0)
-%  };
-
 \fill [orcidgreen]
   (256,128)
     .. controls (256,57.3)  and (198.7,0)   .. (128,0)
@@ -201,30 +180,8 @@ blah hah
   --(124.3,163)
   --(124.3,83.6)
   ;
-
-%{
-%\newrgbcolor{curcolor}{1 1 1}
-%\pscustom[linestyle=none,fillstyle=solid,fillcolor=curcolor]
-%{
-%\newpath
-%\moveto(108.9,176.9)
-%\lineto(150.5,176.9)
-%\curveto(190.1,176.9)(207.5,148.6)(207.5,123.3)
-%\curveto(207.5,95.8)(186,69.7)(150.7,69.7)
-%\lineto(108.9,69.7)
-%\lineto(108.9,176.9)
-%\closepath
-%\moveto(124.3,83.6)
-%\lineto(148.8,83.6)
-%\curveto(183.7,83.6)(191.7,110.1)(191.7,123.3)
-%\curveto(191.7,144.8)(178,163)(148,163)
-%\lineto(124.3,163)
-%\lineto(124.3,83.6)
-%\closepath
-%}
-%}
-
 \end{tikzpicture}
+}
 
 hah blah
 
@@ -235,81 +192,6 @@ hah blah
 
 
 
-
-
-%\psset{xunit=.25pt,yunit=.25pt,runit=.25pt}
-\tikzset{xunit=.25pt,yunit=.25pt,runit=.25pt}
-\begin{pspicture}(256,256)
-{
-\newrgbcolor{curcolor}{0.65098041 0.80784315 0.22352941}
-%\pscustom[linestyle=none,fillstyle=solid,fillcolor=curcolor]
-{
-%\newpath
-\moveto(256,128)
-\curveto(256,57.3)(198.7,0)(128,0)
-\curveto(57.3,0)(0,57.3)(0,128)
-\curveto(0,198.7)(57.3,256)(128,256)
-\curveto(198.7,256)(256,198.7)(256,128)
-%\closepath
-}
-}
-%
-%
-%
-%{
-%\newrgbcolor{curcolor}{1 1 1}
-%\pscustom[linestyle=none,fillstyle=solid,fillcolor=curcolor]
-%{
-%\newpath
-%\moveto(86.3,69.8)
-%\lineto(70.9,69.8)
-%\lineto(70.9,176.9)
-%\lineto(86.3,176.9)
-%\lineto(86.3,128.5)
-%\lineto(86.3,69.8)
-%\closepath
-%}
-%}
-%
-%
-%
-%{
-%\newrgbcolor{curcolor}{1 1 1}
-%\pscustom[linestyle=none,fillstyle=solid,fillcolor=curcolor]
-%{
-%\newpath
-%\moveto(108.9,176.9)
-%\lineto(150.5,176.9)
-%\curveto(190.1,176.9)(207.5,148.6)(207.5,123.3)
-%\curveto(207.5,95.8)(186,69.7)(150.7,69.7)
-%\lineto(108.9,69.7)
-%\lineto(108.9,176.9)
-%\closepath
-%\moveto(124.3,83.6)
-%\lineto(148.8,83.6)
-%\curveto(183.7,83.6)(191.7,110.1)(191.7,123.3)
-%\curveto(191.7,144.8)(178,163)(148,163)
-%\lineto(124.3,163)
-%\lineto(124.3,83.6)
-%\closepath
-%}
-%}
-%
-%
-%{
-%\newrgbcolor{curcolor}{1 1 1}
-%\pscustom[linestyle=none,fillstyle=solid,fillcolor=curcolor]
-%{
-%\newpath
-%\moveto(88.7,199.2)
-%\curveto(88.7,193.7)(84.2,189.1)(78.6,189.1)
-%\curveto(73,189.1)(68.5,193.7)(68.5,199.2)
-%\curveto(68.5,204.8)(73,209.3)(78.6,209.3)
-%\curveto(84.2,209.3)(88.7,204.7)(88.7,199.2)
-%\closepath
-%}
-%}
-\end{pspicture}
 
 
 
