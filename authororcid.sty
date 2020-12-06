@@ -79,5 +79,109 @@
 }
 
 
+\newlength{\orcidlogowidth}
+\setlength{\orcidlogowidth}{8pt}
+
+
+\newcommand*\orcid[1][]{\begingroup\@orcid{#1}}%
+\def\@orcid#1#2{%
+ \endgroup
+ %\@AF@join{#1\href{mailto:#2}{#2}}%
+}%
+
+
+%\makeatletter
+%\def\@author@present@script#1#2#3{%
+% \begingroup
+%  \gdef\comma@space{\textsuperscript{,\,}}%
+%  \doauthor{#2}{#3}{%
+%    \hspace{0.5\orcidlogowidth}%
+%    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
+%    \@affil@present@script}%
+% \endgroup
+% \advance\@tempcnta\m@ne
+%}%
+%\makeatother
+
+
+%\makeatletter
+%%
+%\def\@author@present@script#1#2#3{%
+% \begingroup
+%  \gdef\comma@space{\textsuperscript{,\,}}%
+%  \doauthor{#2}{#3}{\@affil@present@script}%
+% \endgroup
+% \advance\@tempcnta\m@ne
+%}%
+%%
+%\def\@author@present@group#1#2#3{%
+%  \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
+%  \doauthor{#2}{#3}{\@affil@present@group}%
+%  \advance\@tempcnta\m@ne
+%}%
+%%
+%\def\doauthor#1#2#3{%
+%  \ignorespaces#1 eh\unskip\@listcomma
+%  \begingroup
+%   #3%
+%  \@if@empty{#2}{\endgroup{}{}}{\endgroup{\comma@space}{}\frontmatter@footnote{#2}}%
+%  \space \@listand
+%}%
+%\makeatother
+
+
+\makeatletter
+%
+\def\@author@present@script#1#2#3{%
+ \begingroup
+  \gdef\comma@space{\textsuperscript{,\,}}%
+  \doauthorworcid{#2}{orcid}{#3}{\@affil@present@script}%
+ \endgroup
+ \advance\@tempcnta\m@ne
+}%
+%
+\def\@author@present@group#1#2#3{%
+  \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
+  \doauthorworcid{#2}{orcid}{#3}{\@affil@present@group}%
+  \advance\@tempcnta\m@ne
+}%
+%
+\def\doauthorworcid#1#2#3#4{%
+  \ignorespaces#1%
+  \@if@empty{#2}{}{%
+    \hspace{0.5\orcidlogowidth}%
+    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
+    }%
+  \unskip\@listcomma
+  \begingroup
+   #4%
+  \@if@empty{#3}{\endgroup{}{}}{\endgroup{\comma@space}{}\frontmatter@footnote{#3}}%
+  \space \@listand
+}%
+\makeatother
+
+
+%%%\doauthor{author}{email}{superscript affiliation}
+%%%\doauthorworcid{author}{orcid}{email}{superscript affiliation}
+
 
 \endinput
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

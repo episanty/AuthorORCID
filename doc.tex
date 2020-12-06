@@ -1,16 +1,10 @@
 \documentclass[%
-  twoside,
-  %floatfix,
   reprint,
-  amsmath,amssymb,
   aps,
   pra,
-  nofootinbib,
-  showpacs,
-  superscriptaddress,
+  %superscriptaddress,
   a4paper,
-  %draft
-]{revtex4-1}
+]{revtex4-2}
 
 
 \usepackage{graphicx}% 
@@ -21,47 +15,7 @@
 
 
 
-%\usepackage{pstricks}
-%\usepackage[pdf]{pstricks}
 \usepackage{tikz}
-
-
-
-
-%%%%%%%%% https://tex.stackexchange.com/a/82318/13423
-%
-%\def\moveto(#1,#2){%
-%  \pgfpathmoveto{\pgfpoint{#1 pt}{#2 pt}}}
-%
-%\def\curveto(#1,#2)(#3,#4)(#5,#6){%
-%  \pgfpathcurveto{\pgfpoint{#1 pt}{#2 pt}}{\pgfpoint{#3 pt}{#4 pt}}{\pgfpoint{#5 pt}{#6 pt}}}
-%
-%%\let\psset=\tikzset
-%\def\pscustom[#1]{\tikzset{#1}}
-%\tikzset{
-%  xunit/.style={x={(#1,0)}},
-%  yunit/.style={y={(0,#1)}},
-%  runit/.style={},
-%  linecolor/.style={color=#1},
-%  linewidth/.style={line width=#1},
-%}
-%
-%\def\newrgbcolor#1#2{\definecolor{#1}{RGB}{#2}}
-%\def\pspicture(#1,#2){\tikzpicture}
-%\def\endpspicture{%
-%\pgfusepath{stroke}
-%\endtikzpicture}
-%\let\newpath=\relax
-%
-%
-
-
-
-
-
-
-
-
 
 
 
@@ -94,7 +48,7 @@ pdfauthor={Emilio Pisanty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\orcid}[1]{%
+\newcommand{\orcidd}[1]{%
   \href{%
     https://orcid.org/#1%
   }{%
@@ -104,8 +58,6 @@ pdfauthor={Emilio Pisanty}
 
 
 \graphicspath{{./}} % specifies the path for the figures
-\allowdisplaybreaks
-
 
 
 \begin{document}
@@ -115,9 +67,18 @@ pdfauthor={Emilio Pisanty}
 \title{The Author ORCID package}
 
 
-\author{Emilio Pisanty\,\orcid{0000-0003-0598-8524}}
+%\author{Emilio Pisanty\,\orcidd{0000-0003-0598-8524}}
+\author{Emilio Pisanty}
+\orcid{0000-0003-0598-8524}
 \email{emilio.pisanty@mbi-berlin.de}
 \affiliation{Max Born Institute for Nonlinear Optics and Short Pulse Spectroscopy, Max Born Strasse 2a, D-12489 Berlin, Germany}
+
+\author{Ann Author}
+\affiliation{The Institute of Institutionality}
+
+\author{Carol Collaborator}
+\affiliation{The Institute of Institutionality}
+\affiliation{The University of Universality}
 
 
 \date{\today}
@@ -130,17 +91,27 @@ The Author ORCID package is a \LaTeX package for the RevTeX class, which handles
 
 \maketitle
 
+%\orcid{abc}
+
+
+%\@orcid
+
+
 {\color{gray}
 \lipsum[1]
 }
 
 The command \verb|\orcidlogo{width}| produces the ORCID logo: \orcidlogo{8pt}.
 
+
+%\doauthor{a}{b}{c}
+
+
 \setlength{\fboxsep}{0pt}
 
-a\fbox{\orcidlogo{8pt}}b
-
 a\orcidlogo{8pt}b
+
+a\fbox{\orcidlogo{8pt}}b
 
 hah blah
 
