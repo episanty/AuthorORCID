@@ -83,11 +83,11 @@
 \setlength{\orcidlogowidth}{8pt}
 
 
-\newcommand*\orcid[1][]{\begingroup\@orcid{#1}}%
-\def\@orcid#1#2{%
- \endgroup
- %\@AF@join{#1\href{mailto:#2}{#2}}%
-}%
+\newcommand\orcid[1]{\def\@orcid{#1}}%
+%\def\@orcid#1{%
+% %\endgroup
+% %\@AF@join{#1\href{mailto:#2}{#2}}%
+%}%
 
 
 %\makeatletter
@@ -135,20 +135,22 @@
 \def\@author@present@script#1#2#3{%
  \begingroup
   \gdef\comma@space{\textsuperscript{,\,}}%
-  \doauthorworcid{#2}{orcid}{#3}{\@affil@present@script}%
+  \doauthorworcid{#2}{\@orcid}{#3}{\@affil@present@script}%
  \endgroup
  \advance\@tempcnta\m@ne
 }%
 %
 \def\@author@present@group#1#2#3{%
   \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
-  \doauthorworcid{#2}{orcid}{#3}{\@affil@present@group}%
+  \doauthorworcid{#2}{}{#3}{\@affil@present@group}%
   \advance\@tempcnta\m@ne
 }%
 %
 \def\doauthorworcid#1#2#3#4{%
   \ignorespaces#1%
   \@if@empty{#2}{}{%
+    \hspace{0.5\orcidlogowidth}%
+    #2
     \hspace{0.5\orcidlogowidth}%
     \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
     }%
@@ -163,6 +165,25 @@
 
 %%%\doauthor{author}{email}{superscript affiliation}
 %%%\doauthorworcid{author}{orcid}{email}{superscript affiliation}
+
+
+\makeatletter
+\def\@orcid@cleared{{}}%
+%
+\def\@author@init{%
+ \let\@author\@author@cleared
+% \let\@orcid\@orcid@cleared
+ \@booleanfalse\collaboration@sw
+}%
+\makeatother
+
+%\def\@author@init{%
+% \let\@author\@author@cleared
+% \@booleanfalse\collaboration@sw
+%}%
+%
+%
+%%% ↑ probably needs to be redefined to clear \@orcid
 
 
 \endinput
