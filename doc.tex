@@ -140,6 +140,8 @@ hah blah
 
 space
 
+$\ $
+
 %\input{build/\jobname.ans}
 
 
@@ -162,30 +164,32 @@ space
 
 
 
-\newwrite\outputstream
-\immediate\openout\outputstream=\jobname.looi
-\immediate\write\outputstream{foo 1}
-\immediate\write\outputstream{foo 2}
-\immediate\write\outputstream{\string\textbf{foo 3}}
-\immediate\closeout\outputstream
+%\newwrite\outputstream
+%\immediate\openout\outputstream=\jobname.looi
+%\immediate\write\outputstream{foo 1}
+%\immediate\write\outputstream{foo 2}
+%\immediate\write\outputstream{\string\textbf{foo 3}}
+%\immediate\closeout\outputstream
  
 % This reads myfile.tmp and writes its contents
+
+\input{\jobname.looi}
  
-\newread\inputstream
-\immediate\openin\inputstream=\jobname.looi
-\immediate\read\inputstream to \auxcommand
- 
-This is the first line of the file: \auxcommand
- 
-\immediate\read\inputstream to \auxcommand
- 
-This is the second line of the file: \auxcommand
- 
-\immediate\read\inputstream to \auxcommand
- 
-This is the third line of the file: \auxcommand
- 
-\immediate\closein\inputstream
+%\newread\inputstream
+%\immediate\openin\inputstream=\jobname.looi
+%\immediate\read\inputstream to \auxcommand
+% 
+%This is the first line of the file: \auxcommand
+% 
+%\immediate\read\inputstream to \auxcommand
+% 
+%This is the second line of the file: \auxcommand
+% 
+%\immediate\read\inputstream to \auxcommand
+% 
+%This is the third line of the file: \auxcommand
+% 
+%\immediate\closein\inputstream
 
 
 

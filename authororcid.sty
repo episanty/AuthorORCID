@@ -135,6 +135,62 @@
 %\immediate\openout\outputorcid=\jobname.looi
 
 
+
+
+
+\newwrite\orcidoutput
+\immediate\openout\orcidoutput=\jobname.looi
+%\immediate\write\orcidoutput{foo 1}
+%\immediate\write\orcidoutput{foo 2}
+%\immediate\write\orcidoutput{\string\textbf{foo 3}}
+%\immediate\closeout\orcidoutput
+
+
+%\def\frontmatter@maketitle@old\frontmatter@maketitle
+%
+%\def\frontmatter@maketitle{
+%  \frontmatter@maketitle@old%
+%  \immediate\closeout\outputstream%
+%  }
+\makeatletter
+\def\@author@finish{%
+ \frontmatterverbose@sw{\typeout{\string\@author@finish}}{}%
+ \move@AU\move@AF
+ \@ifx{\AU@grp\@empty}{%
+  \@ifx{\CO@grp\@empty}%
+ }{%
+  \false@sw
+ }%
+ {}{%
+  \@ifx{\AF@grp\@empty}{%
+   \begingroup
+    \let\href\@secondoftwo
+    \let\AU@opr\@secondofthree
+    \let\CO@opr\@secondofthree
+    \let\footnote\@gobble
+    \@ifx{\CO@grp\@empty}{%
+     \class@warn{Assuming \string\noaffiliation\space for authors}%
+     \frontmatterverbose@sw{\say\AU@grp}%
+    }{%
+     \class@warn{Assuming \string\noaffiliation\space for collaboration}%
+     \frontmatterverbose@sw{\say\CO@grp}{}%
+    }%
+   \endgroup
+   \@affil@none\move@AF
+  }{}%
+ }%
+ \move@AUAF%
+ %
+ %%% new code:
+ %
+\immediate\write\orcidoutput{foo 1}
+\immediate\write\orcidoutput{foo 2}
+\immediate\write\orcidoutput{\string\textbf{foo 3}}
+%
+ \immediate\closeout\orcidoutput%
+}%
+\makeatother
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -150,12 +206,22 @@
  %
  %\write\@auxout{testing aux out from loop}
  %\write\outputorcid{#1}
+% \immediate\write\orcidoutput{\@author}%
+% \immediate\write\orcidoutput{ }%
+% \immediate\write\orcidoutput{#1}%
+% \immediate\write\orcidoutput{ }%
 }%
 \makeatother
 
 
 \makeatletter
 \def\@author@add@orcid@#1#2#3{%
+
+ \immediate\write\orcidoutput{#1}%
+ \immediate\write\orcidoutput{ }%
+ \immediate\write\orcidoutput{#3}%
+ \immediate\write\orcidoutput{ }%
+
   \def\@author{{%
     #1%
     \hspace{0.5\orcidlogowidth}%

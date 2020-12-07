@@ -6,6 +6,7 @@
 *.log
 *.out
 *.blg
+*.looi
 *Notes.bib
 
 *.synctex
