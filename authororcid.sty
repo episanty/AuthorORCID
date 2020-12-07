@@ -221,8 +221,25 @@
  \@author@orcid@join{#1}%
 % \show\@author@orcid%
 % \show\@author
+ %%% defining \@author author name here?
+ \@author@redefine{#1}
 }%
 \makeatother
+
+
+%\def\@author@join@#1#2#3{%
+%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
+%}%
+%\def\@author@join{\expandafter\@author@join@\@author}%
+
+
+\makeatletter
+\def\@author@redefine@#1#2#3{%
+  \def\@author{{#1 test #3}{#2}}%
+}%
+\def\@author@redefine{\expandafter\@author@redefine@\@author}%
+\makeatother
+
 
 
 
