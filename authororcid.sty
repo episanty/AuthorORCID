@@ -158,7 +158,7 @@
   \ignorespaces#1%
   \@if@empty{#2}{}{%
     \hspace{0.5\orcidlogowidth}%
-    \edef#2
+    #2
     \hspace{0.5\orcidlogowidth}%
     \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
     }%
@@ -187,7 +187,6 @@
 %
 \def\@author@init{%
  \let\@author\@author@cleared
-% \let\@orcid\@orcid@cleared
  \let\@author@orcid\@orcid@cleared
  \@booleanfalse\collaboration@sw
 }%
@@ -206,27 +205,23 @@
  %
 }%
 %
-\def\@author@orcid@join@#1#2{%
+\def\@author@orcid@join@#1#2#3{%
   \def\@author@orcid{{#1}{\@join{\@separator}{#2}}}%
 }%
 \def\@author@orcid@join{\expandafter\@author@orcid@join@\@author@orcid}%
 \makeatother
 
 
-%\def\@author@join@#1#2#3{%
-%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
-%}%
-%\def\@author@join{\expandafter\@author@join@\@author}%
-
 \makeatletter
-\newcommand*\orcid[1][]{\begingroup\@orcid{#1}}%
-\def\@orcid#1#2{%
+\newcommand*\orcid[1]{\begingroup\@orcid@def{#1}}%
+\def\@orcid@def#1{%
 % \@AF@join{#1\href{https://orcid.org/#2}{#2}}%
 % \@author@join{#1\href{https://orcid.org/#2}{#2}}%
 % \@author@join{a}{b}{c}
 % \@author@orcid@join@{#1\href{https://orcid.org/#2}{#2}}
- \@author@orcid@join@{#1}
+% \@author@orcid@join@{#1}
  \endgroup
+ \@author@orcid@join{#1}%{#1\href{https://orcid.org/#2}{#2}}
 }%
 \makeatother
 
