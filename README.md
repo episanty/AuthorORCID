@@ -1,10 +1,10 @@
 The Author ORCID Package
 ========================
 
-© Emilio Pisanty (2020), available under the [LPPL license](http://www.latex-project.org/lppl.txt)
+© Emilio Pisanty (2020), available under the [LPPL license](http://www.latex-project.org/lppl.txt).
 
 
-The Author ORCID package is a LaTeX package for the REVTeX class which adds support for ORCID iDs in the author handling. It provides the following features:
+The Author ORCID package is a prototype LaTeX package for the REVTeX class which adds support for ORCID iDs in the author handling. It provides the following features:
 
  - An `\orcidicon{width}` command, which produces the ORCID iD icon at the specified width. This graphic is produced within `tikz`, and it is a transcription of the SVG version. The default width for the icon is 8pt, and it is encoded as the `\orcidiconwidth` length.
 
