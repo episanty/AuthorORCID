@@ -195,7 +195,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
+\makeatletter
+\newcommand{\@format@export@orcid}[2]{\ item #1 #2}
+%
+\def\@export@orcid#1{%
+  \immediate\write\orcidoutput{#1}%
+  \immediate\write\orcidoutput{ }%
+  }
+\makeatother
 
 \makeatletter
 \newcommand*\orcid[1]{\begingroup\@orcid@def{#1}}%
@@ -217,10 +224,15 @@
 \makeatletter
 \def\@author@add@orcid@#1#2#3{%
 
- \immediate\write\orcidoutput{#1}%
- \immediate\write\orcidoutput{ }%
- \immediate\write\orcidoutput{#3}%
- \immediate\write\orcidoutput{ }%
+\@export@orcid{\@format@export@orcid{#1}{#3}}
+
+% \immediate\write\orcidoutput{\@format@export@orcid{#1}{#3}}%
+% \immediate\write\orcidoutput{ }%
+
+% \immediate\write\orcidoutput{#1}%
+% \immediate\write\orcidoutput{ }%
+% \immediate\write\orcidoutput{#3}%
+% \immediate\write\orcidoutput{ }%
 
   \def\@author{{%
     #1%
