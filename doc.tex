@@ -7,12 +7,7 @@
 ]{revtex4-2}
 
 
-%\usepackage{enumitem}
-
-
-
 \usepackage{authororcid}
-
 
 
 % For draft stage
@@ -22,7 +17,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[
   bookmarks=false,
-  %bookmarks=true,
+  bookmarks=true,
   colorlinks,
   linkcolor=blue,
   urlcolor=blue,
@@ -39,15 +34,6 @@ pdfauthor={Emilio Pisanty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\newcommand{\orcidd}[1]{%
-%  \href{%
-%    https://orcid.org/#1%
-%  }{%
-%   \,\protect\includegraphics[width=8pt]{ORCID-icon.png}\,%
-%  }%
-%}
-
-
 
 \begin{document}
 
@@ -55,45 +41,59 @@ pdfauthor={Emilio Pisanty}
 
 \title{The Author ORCID package}
 
-
-%\author{Emilio Pisanty\,\orcidd{0000-0003-0598-8524}}
 \author{Emilio Pisanty}
 \orcid{0000-0003-0598-8524}
 \email{emilio.pisanty@mbi-berlin.de}
 \affiliation{Max Born Institute for Nonlinear Optics and Short Pulse Spectroscopy, Max Born Strasse 2a, D-12489 Berlin, Germany}
 
-\author{Ann Author}
-\email{ann.author@institutionality.edu}
-\orcid{0000-0000-0000-0000}
-\affiliation{The Institute of Institutionality}
-
 \author{Josiah Carberry}
-\email{carberry@psychoceramics.edu}
 \orcid{0000-0002-1825-0097}
-\affiliation{Brown University, Providence, Rhode Island}
-
-\author{Carol Collaborator}
-\affiliation{The Institute of Institutionality}
-\affiliation{The University of Universality}
-
+\affiliation{Department of Psychoceramics, Brown University}
 
 \date{\today}
 
-
-
 \begin{abstract}
-The Author ORCID package is a \LaTeX package for the RevTeX class, which handles the ORCID attribution for authors.
+The Author ORCID package is a {\LaTeX} package for the REVTeX class, which handles ORCID iD attribution for authors.
 \end{abstract}
 
 \maketitle
 
 
-{\color{gray}
-\lipsum[1]
-}
 
-The command \verb|\orcidlogo{width}| produces the ORCID logo: \orcidlogo{8pt}.
 
+This package adds support for ORCID iDs to the REVTeX class. It provides the following features:
+
+\begin{itemize}
+\item
+An \verb|\orcidlogo{width}| command, which produces the ORCID logo at the specified width: small, \orcidlogo{8pt}, or bigger:
+
+\orcidlogo{20pt}
+
+This graphic is produced within \texttt{tikz}, and it is a transcription of the SVG version.
+
+\item
+An \verb|\orcid{orcid-id}| command, which can be added after each \verb|\author| with the corresponding numerical iD. 
+An example usage is as follows:
+\begin{verbatim}
+\author{Josiah Carberry}
+\orcid{0000-0002-1825-0097}
+\affiliation{Department of Psychoceramics, 
+               Brown University}
+\end{verbatim}
+This will produce ORCID badges after each author for which an iD has been specified, hyperlinked to that author's ORCID record.
+
+
+\item
+An \verb|\listoforcidids| command, which produces an unnumbered section listing all the author ORCID iDs, suitably hyperlinked, as shown below.
+
+\end{itemize}
+
+This package calls on the \texttt{tikz}, \texttt{xcolor} and \texttt{enumitem} packages as dependences.
+
+To be honest, the code here is quite `hacky' and probably quite fragile.
+It is unlikely that this is a sustainable way forward, but the code presented here will hopefully be a useful prototype and temporary fix until full ORCID iD support is included into the REVTeX class itself.
+
+For full clarity, Josiah Carberry is a fictional person and has no involvement with this work---the authorship is wholly mine (E.\ Pisanty), and Carberry (described as an expert in the study of `cracked pots' by Wikipedia) is \href{https://support.orcid.org/hc/en-us/articles/360006897674-Structure-of-the-ORCID-Identifier}{listed by ORCID} as a suitable example author for demonstration purposes.
 
 \listoforcidids
 
