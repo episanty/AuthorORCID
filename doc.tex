@@ -7,7 +7,7 @@
 ]{revtex4-2}
 
 
-\usepackage{enumitem}
+%\usepackage{enumitem}
 
 
 
@@ -39,16 +39,14 @@ pdfauthor={Emilio Pisanty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\orcidd}[1]{%
-  \href{%
-    https://orcid.org/#1%
-  }{%
-   \,\protect\includegraphics[width=8pt]{ORCID-icon.png}\,%
-  }%
-}
+%\newcommand{\orcidd}[1]{%
+%  \href{%
+%    https://orcid.org/#1%
+%  }{%
+%   \,\protect\includegraphics[width=8pt]{ORCID-icon.png}\,%
+%  }%
+%}
 
-
-\graphicspath{{./}} % specifies the path for the figures
 
 
 \begin{document}
@@ -89,21 +87,6 @@ The Author ORCID package is a \LaTeX package for the RevTeX class, which handles
 
 \maketitle
 
-%\makeatletter
-%\protected@write\@auxout{}{hello3}
-%\makeatother
-
-%\newwrite\myfile
-%\immediate\openout\myfile=\jobname.foo
-%
-%\write\myfile{hello}
-
-
-%\orcid{abc}
-
-
-%\@orcid
-
 
 {\color{gray}
 \lipsum[1]
@@ -112,102 +95,8 @@ The Author ORCID package is a \LaTeX package for the RevTeX class, which handles
 The command \verb|\orcidlogo{width}| produces the ORCID logo: \orcidlogo{8pt}.
 
 
-%\doauthor{a}{b}{c}
-
-
-\setlength{\fboxsep}{0pt}
-
-a\orcidlogo{8pt}b
-
-a\fbox{\orcidlogo{8pt}}b
-
-hah blah
-
-
-%\addcontentsline{lof}{lof}{thing}
-
-%\listofauthororcid
-
-
-%\answer{Hard}
-%
-%\listofanswer
-
-%\write\myoutput{stuff stuff}
-
-
-%\input{build/doc.ans}
-
-space
-
-$\ $
-
-%\input{build/\jobname.ans}
-
-
-%\write\outputorcid{test write}
-
-
-
-%\section*{Author ORCIDs}
-%\vspace{-1mm}
-%\begin{itemize}[
-%  itemsep=-1mm,
-%  leftmargin=\dimexpr0.3cm+\labelsep\relax,
-%  label={\smash{\includegraphics[width=8pt]{ORCID-icon.png}}}
-%  ]
-%\item Emilio Pisanty:
-%   \href{https://orcid.org/0000-0003-0598-8524}{0000-0003-0598-8524}
-%\end{itemize}
-
-
-
-
-
-%\newwrite\outputstream
-%\immediate\openout\outputstream=\jobname.looi
-%\immediate\write\outputstream{foo 1}
-%\immediate\write\outputstream{foo 2}
-%\immediate\write\outputstream{\string\textbf{foo 3}}
-%\immediate\closeout\outputstream
- 
-% This reads myfile.tmp and writes its contents
-
-
 \listoforcidids
 
-
-
-
-
-%\begin{itemize}
-%\item 
-%\input{\jobname.looi}
-%\end{itemize}
- 
-%\newread\inputstream
-%\immediate\openin\inputstream=\jobname.looi
-%\immediate\read\inputstream to \auxcommand
-% 
-%This is the first line of the file: \auxcommand
-% 
-%\immediate\read\inputstream to \auxcommand
-% 
-%This is the second line of the file: \auxcommand
-% 
-%\immediate\read\inputstream to \auxcommand
-% 
-%This is the third line of the file: \auxcommand
-% 
-%\immediate\closein\inputstream
-
-
-
-
-
-
-%\bibliographystyle{arthur} 
-%\bibliography{references}
 
 
 \end{document}

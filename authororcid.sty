@@ -3,72 +3,15 @@
 
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
-%\RequirePackage{tocloft}
 \RequirePackage{enumitem}
 
-%\RequirePackage{tocloftedit}
-
-
-
-%\makeatletter
-%\providecommand{\@cfttocfinish}{}
-%\makeatother
-
-
-%%% tocloft 
-
-%\def\@starttoc@latex@orig#1{%
-% \begingroup
-%   \makeatletter
-%   \@input{\jobname.#1}%
-%   \if@filesw
-%     \expandafter\newwrite\csname tf@#1\endcsname
-%     \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
-%   \fi
-%  \@nobreakfalse
-%\endgroup}
-
-%%% revtex
-
-%\def\@starttoc#1{%
-%  \begingroup
-%    \toc@pre
-%    \makeatletter
-%    \@input{\jobname.#1}%
-%    \if@filesw
-%      \expandafter\newwrite\csname tf@#1\endcsname
-%      \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
-%    \fi
-%    \@nobreakfalse
-%    \toc@post
-%  \endgroup
-%}%
-
-
-
-%\RequirePackage{tocloft}
-
-
-
-%%% 'sans serif' option
-%\DeclareOption{sans}{
-%  \renewcommand{\familydefault}{\sfdefault}
-%}
-%
-%%% 'roman' option
-%\DeclareOption{roman}{
-%  \renewcommand{\familydefault}{\rmdefault}
-%}
-%
-%%% Global indentation option
-%\newif\if@neverindent\@neverindentfalse
-%\DeclareOption{neverindent}{
-%  \@neverindenttrue
-%}
-%
-%\ExecuteOptions{roman}
 
 \ProcessOptions\relax
+
+
+
+
+
 
 
 %%% The ORCID green color
@@ -130,28 +73,16 @@
 \setlength{\orcidlogowidth}{8pt}
 
 
-
-%\newwrite\outputorcid
-%\immediate\openout\outputorcid=\jobname.looi
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \newwrite\orcidoutput
 \immediate\openout\orcidoutput=\jobname.looi
-%\immediate\write\orcidoutput{foo 1}
-%\immediate\write\orcidoutput{foo 2}
-%\immediate\write\orcidoutput{\string\textbf{foo 3}}
-%\immediate\closeout\orcidoutput
 
 
-%\def\frontmatter@maketitle@old\frontmatter@maketitle
+%%% redefining \@author@finish to close the \orcidoutput stream when we're done writing to file.
 %
-%\def\frontmatter@maketitle{
-%  \frontmatter@maketitle@old%
-%  \immediate\closeout\outputstream%
-%  }
 \makeatletter
 \def\@author@finish{%
  \frontmatterverbose@sw{\typeout{\string\@author@finish}}{}%
@@ -203,6 +134,7 @@
   }
 \makeatother
 
+
 \makeatletter
 \newcommand*\orcid[1]{\begingroup\@orcid@def{#1}}%
 \def\@orcid@def#1{%
@@ -244,34 +176,6 @@
 }
 
 
-
-%\newcommand{\listorcidname}{Author ORCID iDs}
-%\newlistof{authororcid}{loid}{\listorcidname}
-%
-%
-%\newcommand{\authororcid}[1]{%
-%\refstepcounter{authororcid}
-%\par\noindent\textbf{authororcid \theanswer. #1}
-%\addcontentsline{loid}{authororcid}{\protect\numberline{\theauthororcid}#1}\par}
-
-
-%\makeatletter
-%\renewcommand{\@cfttocfinish}{}
-%\makeatother
-
-%\newcommand{\listanswername}{List of Answers}
-%\newlistof{answer}{ans}{\listanswername}
-%
-%\newcommand{\answer}[1]{%
-%\refstepcounter{answer}
-%\par\noindent\textbf{Answer \theanswer. #1}
-%\addcontentsline{ans}{answer}{\protect\numberline{\theanswer}#1}\par}
-
-
-%\newwrite\myoutput
-%\immediate\openout\myoutput=\jobname.output
-
-%\def\listoftables{\print@toc{lot}}%
 
 
 \endinput
