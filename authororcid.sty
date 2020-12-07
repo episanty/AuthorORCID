@@ -97,20 +97,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\makeatletter
-%\def\@author@present@script#1#2#3{%
-% \begingroup
-%  \gdef\comma@space{\textsuperscript{,\,}}%
-%  \doauthor{#2}{#3}{%
-%    \hspace{0.5\orcidlogowidth}%
-%    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
-%    \@affil@present@script}%
-% \endgroup
-% \advance\@tempcnta\m@ne
-%}%
-%\makeatother
-%
-%
-%\makeatletter
 %%
 %\def\@author@present@script#1#2#3{%
 % \begingroup
@@ -138,9 +124,19 @@
 
 \makeatletter
 %
+%% #1 -> 0 throughout
+%% #2 -> author name
+%% #3 -> ??? should be the email/homepage/altaffil
+%
 \def\@author@present@script#1#2#3{%
  \begingroup
   \gdef\comma@space{\textsuperscript{,\,}}%
+  %
+  %\message{debugging message }%
+  %\message{#2}
+  %\message{ close}%
+  %\show#1%
+  %
   \doauthorworcid{#2}{\@author@orcid}{#3}{\@affil@present@script}%
  \endgroup
  \advance\@tempcnta\m@ne
@@ -158,7 +154,7 @@
   \ignorespaces#1%
   \@if@empty{#2}{}{%
     \hspace{0.5\orcidlogowidth}%
-    \show#2%
+    #2%
     \hspace{0.5\orcidlogowidth}%
     \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
     }%
@@ -223,9 +219,52 @@
 % \@author@orcid@join@{#1}
  \endgroup%
  \@author@orcid@join{#1}%
- \show\@author@orcid%
+% \show\@author@orcid%
+% \show\@author
 }%
 \makeatother
+
+
+
+
+
+
+
+%%%%% trying to take \frontmatter@author@produce apart:
+%
+%\makeatletter
+%\def\frontmatter@author@produce@script{%
+%  \begingroup
+%    \let\@author@present\@author@present@script
+%    \frontmatterverbose@sw{\typeout{\string\frontmatter@author@produce@script:}\say\@AAC@list\say\@AFF@list\say\@AFG@list}{}%
+%    \let\AU@temp\@empty
+%    \@tempcnta\z@
+%    \let\AF@opr \@gobble
+%    \def\AU@opr{\@author@count\@tempcnta}%
+%    \def\CO@opr{\@collaboration@count\AU@temp\@tempcnta}%
+%    \@AAC@list
+%    \expandafter\CO@opr\@author@cleared
+%    \begingroup
+%     \frontmatter@authorformat
+%     %\let\AF@opr \@affilID@def
+%     \let\AU@opr \@author@present
+%     %\def\CO@opr{\@collaboration@present\AU@temp}%
+%     \set@listcomma@list\AU@temp
+%     \@AAC@list %%% this seems to be a key part.
+%     \unskip\unskip
+%     \par
+%    \endgroup
+%%    \begingroup
+%%     \frontmatter@above@affiliation@script
+%%     \let\AFF@opr \@affil@script
+%%     \@AFF@list
+%%     \frontmatter@footnote@produce
+%%     \par
+%%    \endgroup
+%  \endgroup
+%}%
+%\makeatother
+
 
 
 
@@ -238,8 +277,7 @@
 
 %\makeatletter
 %\renewcommand\frontmatter@author{% implicit #1
-% \@author@def{}% implicit #2
-% \def\@orcid{{}}
+% \@author@def{}% implicit #2}
 %}%
 %\makeatother
 
