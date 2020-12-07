@@ -163,9 +163,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\makeatletter
+\AtBeginDocument{
+\@ifpackageloaded{hyperref}{%
+  \def\orcididsectiontitle{ORCID \texorpdfstring{\lowercase{i}D\lowercase{s}}{iDs}}
+  }{
+  \def\orcididsectiontitle{ORCID \lowercase{i}D\lowercase{s}}
+  }
+}
+\makeatother
+
 
 \newcommand{\listoforcidids}{
-  \section*{ORCID \texorpdfstring{\lowercase{i}D\lowercase{s}}{iDs}}
+  \section*{\orcididsectiontitle}
   \begin{itemize}[
     itemsep=-1mm,
     leftmargin=\dimexpr0.3cm+\labelsep\relax,
@@ -174,6 +184,7 @@
   \input{\jobname.looi}
   \end{itemize}
 }
+
 
 
 
