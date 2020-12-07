@@ -83,18 +83,18 @@
 \setlength{\orcidlogowidth}{8pt}
 
 
-%\newcommand*\email[1][]{\begingroup\sanitize@url\@email{#1}}%
-%\def\@email#1#2{%
-% \endgroup
-% \@AF@join{#1\href{mailto:#2}{#2}}%
-%}%
 
-\newcommand\orcid[1]{\def\@orcid{#1}}%
+
+%\newcommand\orcid[1]{\def\@orcid{#1}}%
 %\def\@orcid#1{%
 % %\endgroup
 % %\@AF@join{#1\href{mailto:#2}{#2}}%
 %}%
 
+
+
+%%%%%%%%%%%%%%%%%  Output routine  %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\makeatletter
 %\def\@author@present@script#1#2#3{%
@@ -108,8 +108,8 @@
 % \advance\@tempcnta\m@ne
 %}%
 %\makeatother
-
-
+%
+%
 %\makeatletter
 %%
 %\def\@author@present@script#1#2#3{%
@@ -141,7 +141,7 @@
 \def\@author@present@script#1#2#3{%
  \begingroup
   \gdef\comma@space{\textsuperscript{,\,}}%
-  \doauthorworcid{#2}{\@orcid}{#3}{\@affil@present@script}%
+  \doauthorworcid{#2}{\@author@orcid}{#3}{\@affil@present@script}%
  \endgroup
  \advance\@tempcnta\m@ne
 }%
@@ -158,7 +158,7 @@
   \ignorespaces#1%
   \@if@empty{#2}{}{%
     \hspace{0.5\orcidlogowidth}%
-    #2
+    \edef#2
     \hspace{0.5\orcidlogowidth}%
     \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
     }%
@@ -175,15 +175,69 @@
 %%%\doauthorworcid{author}{orcid}{email}{superscript affiliation}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%% my attempts:
+
 \makeatletter
 \def\@orcid@cleared{{}}%
 %
 \def\@author@init{%
  \let\@author\@author@cleared
 % \let\@orcid\@orcid@cleared
+ \let\@author@orcid\@orcid@cleared
  \@booleanfalse\collaboration@sw
 }%
 \makeatother
+
+
+\makeatletter
+\def\@author@def#1#2{%
+ \frontmatterverbose@sw{\typeout{\string\author\space\string\collaboration}}{}%
+ \move@AU\move@AF\move@AUAF
+ \let\@AF@join\@author@join
+ #1%
+ \def\@author{{#2}{}}%
+ %
+ \def\@author@orcid{{#2}{}}%
+ %
+}%
+%
+\def\@author@orcid@join@#1#2{%
+  \def\@author@orcid{{#1}{\@join{\@separator}{#2}}}%
+}%
+\def\@author@orcid@join{\expandafter\@author@orcid@join@\@author@orcid}%
+\makeatother
+
+
+%\def\@author@join@#1#2#3{%
+%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
+%}%
+%\def\@author@join{\expandafter\@author@join@\@author}%
+
+\makeatletter
+\newcommand*\orcid[1][]{\begingroup\@orcid{#1}}%
+\def\@orcid#1#2{%
+% \@AF@join{#1\href{https://orcid.org/#2}{#2}}%
+% \@author@join{#1\href{https://orcid.org/#2}{#2}}%
+% \@author@join{a}{b}{c}
+% \@author@orcid@join@{#1\href{https://orcid.org/#2}{#2}}
+ \@author@orcid@join@{#1}
+ \endgroup
+}%
+\makeatother
+
+
+
+
+
+
+
+
+%%%%%%%% from the package itself:
 
 %\makeatletter
 %\renewcommand\frontmatter@author{% implicit #1
@@ -205,6 +259,35 @@
 %
 %
 %%% ↑ probably needs to be redefined to clear \@orcid
+
+
+
+
+
+
+%\def\@author@def#1#2{%
+% \frontmatterverbose@sw{\typeout{\string\author\space\string\collaboration}}{}%
+% \move@AU\move@AF\move@AUAF
+% \let\@AF@join\@author@join
+% #1%
+% \def\@author{{#2}{}}%
+%}%
+%\def\@author@join@#1#2#3{%
+%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
+%}%
+%\def\@author@join{\expandafter\@author@join@\@author}%
+
+
+%\newcommand*\email[1][]{\begingroup\sanitize@url\@email{#1}}%
+%\def\@email#1#2{%
+% \endgroup
+% \@AF@join{#1\href{mailto:#2}{#2}}%
+%}%
+
+
+
+
+
 
 
 \endinput
