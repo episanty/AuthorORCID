@@ -153,10 +153,10 @@
 \def\doauthorworcid#1#2#3#4{%
   \ignorespaces#1%
   \@if@empty{#2}{}{%
-    \hspace{0.5\orcidlogowidth}%
-    #2%
-    \hspace{0.5\orcidlogowidth}%
-    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
+%    \hspace{0.5\orcidlogowidth}%
+%    #2%
+%    \hspace{0.5\orcidlogowidth}%
+%    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
     }%
   \unskip\@listcomma
   \begingroup
@@ -222,7 +222,7 @@
 % \show\@author@orcid%
 % \show\@author
  %%% defining \@author author name here?
- \@author@redefine{#1}
+ \@author@add@orcid{#1}
 }%
 \makeatother
 
@@ -234,10 +234,14 @@
 
 
 \makeatletter
-\def\@author@redefine@#1#2#3{%
-  \def\@author{{#1 test #3}{#2}}%
+\def\@author@add@orcid@#1#2#3{%
+  \def\@author{{%
+    #1%
+    \hspace{0.5\orcidlogowidth}%
+    \href{https://orcid.org/#3}{\orcidlogo{\orcidlogowidth}}%
+    }{#2}}%
 }%
-\def\@author@redefine{\expandafter\@author@redefine@\@author}%
+\def\@author@add@orcid{\expandafter\@author@add@orcid@\@author}%
 \makeatother
 
 
