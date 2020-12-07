@@ -7,21 +7,12 @@
 ]{revtex4-2}
 
 
-\usepackage{graphicx}% 
-\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{enumitem}
+
+
 
 \usepackage{authororcid}
 
-
-
-\usepackage{tikz}
-
-
-
-% Use accented characters
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 
 
 % For draft stage
@@ -98,6 +89,16 @@ The Author ORCID package is a \LaTeX package for the RevTeX class, which handles
 
 \maketitle
 
+%\makeatletter
+%\protected@write\@auxout{}{hello3}
+%\makeatother
+
+%\newwrite\myfile
+%\immediate\openout\myfile=\jobname.foo
+%
+%\write\myfile{hello}
+
+
 %\orcid{abc}
 
 
@@ -123,39 +124,71 @@ a\fbox{\orcidlogo{8pt}}b
 hah blah
 
 
+%\addcontentsline{lof}{lof}{thing}
+
+%\listofauthororcid
+
+
+%\answer{Hard}
+%
+%\listofanswer
+
+%\write\myoutput{stuff stuff}
+
+
+%\input{build/doc.ans}
+
+space
+
+%\input{build/\jobname.ans}
+
+
+%\write\outputorcid{test write}
+
+
+
+%\section*{Author ORCIDs}
+%\vspace{-1mm}
+%\begin{itemize}[
+%  itemsep=-1mm,
+%  leftmargin=\dimexpr0.3cm+\labelsep\relax,
+%  label={\smash{\includegraphics[width=8pt]{ORCID-icon.png}}}
+%  ]
+%\item Emilio Pisanty:
+%   \href{https://orcid.org/0000-0003-0598-8524}{0000-0003-0598-8524}
+%\end{itemize}
 
 
 
 
 
+\newwrite\outputstream
+\immediate\openout\outputstream=\jobname.looi
+\immediate\write\outputstream{foo 1}
+\immediate\write\outputstream{foo 2}
+\immediate\write\outputstream{\string\textbf{foo 3}}
+\immediate\closeout\outputstream
+ 
+% This reads myfile.tmp and writes its contents
+ 
+\newread\inputstream
+\immediate\openin\inputstream=\jobname.looi
+\immediate\read\inputstream to \auxcommand
+ 
+This is the first line of the file: \auxcommand
+ 
+\immediate\read\inputstream to \auxcommand
+ 
+This is the second line of the file: \auxcommand
+ 
+\immediate\read\inputstream to \auxcommand
+ 
+This is the third line of the file: \auxcommand
+ 
+\immediate\closein\inputstream
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section*{Author ORCIDs}
-\vspace{-1mm}
-\begin{itemize}[
-  itemsep=-1mm,
-  leftmargin=\dimexpr0.3cm+\labelsep\relax,
-  label={\smash{\includegraphics[width=8pt]{ORCID-icon.png}}}
-  ]
-\item Emilio Pisanty:
-   \href{https://orcid.org/0000-0003-0598-8524}{0000-0003-0598-8524}
-\end{itemize}
 
 
 

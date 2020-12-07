@@ -1,25 +1,72 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{authororcid}[2020/12/06 Author ORCID]
+\ProvidesPackage{authororcid}[2020/12/07 Author ORCID]
 
-\RequirePackage{lmodern}
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+%\RequirePackage{tocloft}
+\RequirePackage{enumitem}
 
-%% 'sans serif' option
-\DeclareOption{sans}{
-  \renewcommand{\familydefault}{\sfdefault}
-}
+%\RequirePackage{tocloftedit}
 
-%% 'roman' option
-\DeclareOption{roman}{
-  \renewcommand{\familydefault}{\rmdefault}
-}
 
-%% Global indentation option
-\newif\if@neverindent\@neverindentfalse
-\DeclareOption{neverindent}{
-  \@neverindenttrue
-}
 
-\ExecuteOptions{roman}
+%\makeatletter
+%\providecommand{\@cfttocfinish}{}
+%\makeatother
+
+
+%%% tocloft 
+
+%\def\@starttoc@latex@orig#1{%
+% \begingroup
+%   \makeatletter
+%   \@input{\jobname.#1}%
+%   \if@filesw
+%     \expandafter\newwrite\csname tf@#1\endcsname
+%     \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+%   \fi
+%  \@nobreakfalse
+%\endgroup}
+
+%%% revtex
+
+%\def\@starttoc#1{%
+%  \begingroup
+%    \toc@pre
+%    \makeatletter
+%    \@input{\jobname.#1}%
+%    \if@filesw
+%      \expandafter\newwrite\csname tf@#1\endcsname
+%      \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+%    \fi
+%    \@nobreakfalse
+%    \toc@post
+%  \endgroup
+%}%
+
+
+
+%\RequirePackage{tocloft}
+
+
+
+%%% 'sans serif' option
+%\DeclareOption{sans}{
+%  \renewcommand{\familydefault}{\sfdefault}
+%}
+%
+%%% 'roman' option
+%\DeclareOption{roman}{
+%  \renewcommand{\familydefault}{\rmdefault}
+%}
+%
+%%% Global indentation option
+%\newif\if@neverindent\@neverindentfalse
+%\DeclareOption{neverindent}{
+%  \@neverindenttrue
+%}
+%
+%\ExecuteOptions{roman}
 
 \ProcessOptions\relax
 
@@ -83,6 +130,11 @@
 \setlength{\orcidlogowidth}{8pt}
 
 
+
+%\newwrite\outputorcid
+%\immediate\openout\outputorcid=\jobname.looi
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -95,6 +147,9 @@
  \endgroup%
 % \show\@author
  \@author@add@orcid{#1}
+ %
+ %\write\@auxout{testing aux out from loop}
+ %\write\outputorcid{#1}
 }%
 \makeatother
 
@@ -111,6 +166,42 @@
 \makeatother
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+%\newcommand{\listorcidname}{Author ORCID iDs}
+%\newlistof{authororcid}{loid}{\listorcidname}
+%
+%
+%\newcommand{\authororcid}[1]{%
+%\refstepcounter{authororcid}
+%\par\noindent\textbf{authororcid \theanswer. #1}
+%\addcontentsline{loid}{authororcid}{\protect\numberline{\theauthororcid}#1}\par}
+
+
+%\makeatletter
+%\renewcommand{\@cfttocfinish}{}
+%\makeatother
+
+%\newcommand{\listanswername}{List of Answers}
+%\newlistof{answer}{ans}{\listanswername}
+%
+%\newcommand{\answer}[1]{%
+%\refstepcounter{answer}
+%\par\noindent\textbf{Answer \theanswer. #1}
+%\addcontentsline{ans}{answer}{\protect\numberline{\theanswer}#1}\par}
+
+
+%\newwrite\myoutput
+%\immediate\openout\myoutput=\jobname.output
+
+%\def\listoftables{\print@toc{lot}}%
 
 
 \endinput
