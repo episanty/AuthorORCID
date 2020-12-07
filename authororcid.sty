@@ -83,154 +83,20 @@
 \setlength{\orcidlogowidth}{8pt}
 
 
-
-
-%\newcommand\orcid[1]{\def\@orcid{#1}}%
-%\def\@orcid#1{%
-% %\endgroup
-% %\@AF@join{#1\href{mailto:#2}{#2}}%
-%}%
-
-
-
-%%%%%%%%%%%%%%%%%  Output routine  %%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\makeatletter
-%%
-%\def\@author@present@script#1#2#3{%
-% \begingroup
-%  \gdef\comma@space{\textsuperscript{,\,}}%
-%  \doauthor{#2}{#3}{\@affil@present@script}%
-% \endgroup
-% \advance\@tempcnta\m@ne
-%}%
-%%
-%\def\@author@present@group#1#2#3{%
-%  \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
-%  \doauthor{#2}{#3}{\@affil@present@group}%
-%  \advance\@tempcnta\m@ne
-%}%
-%%
-%\def\doauthor#1#2#3{%
-%  \ignorespaces#1 eh\unskip\@listcomma
-%  \begingroup
-%   #3%
-%  \@if@empty{#2}{\endgroup{}{}}{\endgroup{\comma@space}{}\frontmatter@footnote{#2}}%
-%  \space \@listand
-%}%
-%\makeatother
-
-
-%\makeatletter
-%%
-%%% #1 -> 0 throughout
-%%% #2 -> author name
-%%% #3 -> ??? should be the email/homepage/altaffil
-%%
-%\def\@author@present@script#1#2#3{%
-% \begingroup
-%  \gdef\comma@space{\textsuperscript{,\,}}%
-%  %
-%  %\message{debugging message }%
-%  %\message{#2}
-%  %\message{ close}%
-%  %\show#1%
-%  %
-%  \doauthorworcid{#2}{\@author@orcid}{#3}{\@affil@present@script}%
-% \endgroup
-% \advance\@tempcnta\m@ne
-%}%
-%%
-%\def\@author@present@group#1#2#3{%
-%  \gdef\comma@space{\gdef\comma@space{\textsuperscript{,\,}}}%
-%  \doauthorworcid{#2}{%
-%    %%% whatever ends up in this argument within \@author@present@script above.
-%  }{#3}{\@affil@present@group}%
-%  \advance\@tempcnta\m@ne
-%}%
-%%
-%\def\doauthorworcid#1#2#3#4{%
-%  \ignorespaces#1%
-%  \@if@empty{#2}{}{%
-%%    \hspace{0.5\orcidlogowidth}%
-%%    #2%
-%%    \hspace{0.5\orcidlogowidth}%
-%%    \href{https://orcid.org/}{\orcidlogo{\orcidlogowidth}}%
-%    }%
-%  \unskip\@listcomma
-%  \begingroup
-%   #4%
-%  \@if@empty{#3}{\endgroup{}{}}{\endgroup{\comma@space}{}\frontmatter@footnote{#3}}%
-%  \space \@listand
-%}%
-%\makeatother
-
-
-%%%\doauthor{author}{email}{superscript affiliation}
-%%%\doauthorworcid{author}{orcid}{email}{superscript affiliation}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-%%%%%%%% my attempts:
-
-%\makeatletter
-%\def\@orcid@cleared{{}}%
-%%
-%\def\@author@init{%
-% \let\@author\@author@cleared
-% \let\@author@orcid\@orcid@cleared
-% \@booleanfalse\collaboration@sw
-%}%
-%\makeatother
-
-
-%\makeatletter
-%\def\@author@def#1#2{%
-% \frontmatterverbose@sw{\typeout{\string\author\space\string\collaboration}}{}%
-% \move@AU\move@AF\move@AUAF
-% \let\@AF@join\@author@join
-% #1%
-% \def\@author{{#2}{}}%
-% %
-% \def\@author@orcid{{#2}{}}%
-% %
-%}%
-%%
-%\def\@author@orcid@join@#1#2#3{%
-%  %\def\@author@orcid{{#1}{\@join{\@separator}{#3}}}%
-%  \def\@author@orcid{{#1}{#3}}%
-%}%
-%\def\@author@orcid@join{\expandafter\@author@orcid@join@\@author@orcid}%
-%\makeatother
 
 
 \makeatletter
 \newcommand*\orcid[1]{\begingroup\@orcid@def{#1}}%
 \def\@orcid@def#1{%
-% \@AF@join{#1\href{https://orcid.org/#2}{#2}}%
-% \@author@join{#1\href{https://orcid.org/#2}{#2}}%
-% \@author@join{a}{b}{c}
-% \@author@orcid@join@{#1\href{https://orcid.org/#2}{#2}}
-% \@author@orcid@join@{#1}
  \endgroup%
-% \@author@orcid@join{#1}%
-% \show\@author@orcid%
 % \show\@author
- %%% defining \@author author name here?
  \@author@add@orcid{#1}
 }%
 \makeatother
-
-
-%\def\@author@join@#1#2#3{%
-%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
-%}%
-%\def\@author@join{\expandafter\@author@join@\@author}%
 
 
 \makeatletter
@@ -243,105 +109,6 @@
 }%
 \def\@author@add@orcid{\expandafter\@author@add@orcid@\@author}%
 \makeatother
-
-
-
-
-
-
-
-
-%%%%% trying to take \frontmatter@author@produce apart:
-%
-%\makeatletter
-%\def\frontmatter@author@produce@script{%
-%  \begingroup
-%    \let\@author@present\@author@present@script
-%    \frontmatterverbose@sw{\typeout{\string\frontmatter@author@produce@script:}\say\@AAC@list\say\@AFF@list\say\@AFG@list}{}%
-%    \let\AU@temp\@empty
-%    \@tempcnta\z@
-%    \let\AF@opr \@gobble
-%    \def\AU@opr{\@author@count\@tempcnta}%
-%    \def\CO@opr{\@collaboration@count\AU@temp\@tempcnta}%
-%    \@AAC@list
-%    \expandafter\CO@opr\@author@cleared
-%    \begingroup
-%     \frontmatter@authorformat
-%     %\let\AF@opr \@affilID@def
-%     \let\AU@opr \@author@present
-%     %\def\CO@opr{\@collaboration@present\AU@temp}%
-%     \set@listcomma@list\AU@temp
-%     \@AAC@list %%% this seems to be a key part.
-%     \unskip\unskip
-%     \par
-%    \endgroup
-%%    \begingroup
-%%     \frontmatter@above@affiliation@script
-%%     \let\AFF@opr \@affil@script
-%%     \@AFF@list
-%%     \frontmatter@footnote@produce
-%%     \par
-%%    \endgroup
-%  \endgroup
-%}%
-%\makeatother
-
-
-
-
-
-
-
-
-
-%%%%%%%% from the package itself:
-
-%\makeatletter
-%\renewcommand\frontmatter@author{% implicit #1
-% \@author@def{}% implicit #2}
-%}%
-%\makeatother
-
-
-
-%\newcommand\frontmatter@author{% implicit #1
-% \@author@def{}% implicit #2
-%}%
-
-%\def\@author@init{%
-% \let\@author\@author@cleared
-% \@booleanfalse\collaboration@sw
-%}%
-%
-%
-%%% ↑ probably needs to be redefined to clear \@orcid
-
-
-
-
-
-
-%\def\@author@def#1#2{%
-% \frontmatterverbose@sw{\typeout{\string\author\space\string\collaboration}}{}%
-% \move@AU\move@AF\move@AUAF
-% \let\@AF@join\@author@join
-% #1%
-% \def\@author{{#2}{}}%
-%}%
-%\def\@author@join@#1#2#3{%
-%  \def\@author{{#1}{\@join{\@separator}{#2}{#3}}}%
-%}%
-%\def\@author@join{\expandafter\@author@join@\@author}%
-
-
-%\newcommand*\email[1][]{\begingroup\sanitize@url\@email{#1}}%
-%\def\@email#1#2{%
-% \endgroup
-% \@AF@join{#1\href{mailto:#2}{#2}}%
-%}%
-
-
-
 
 
 
