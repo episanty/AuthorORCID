@@ -41,7 +41,7 @@
 %%%
 %%% The ORCID iD icon is a registered trademark property of ORCID. An SVG version is available from https://orcid.figshare.com/articles/ORCID_iD_icon_graphics/5008697, and the reuse conditions are specified in https://orcid.org/trademark-and-id-display-guidelines. The code below is a direct transcription of the SVG version to the tikz format.
 %
-\newcommand{\orcidlogo}[1]{%
+\newcommand{\orcidicon}[1]{%
 \resizebox{#1}{!}{%
 \begin{tikzpicture}[scale=0.010]%
 \fill [orcidgreen]
@@ -87,8 +87,8 @@
 }
 
 
-\newlength{\orcidlogowidth}
-\setlength{\orcidlogowidth}{8pt}
+\newlength{\orcidiconwidth}
+\setlength{\orcidiconwidth}{8pt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -170,8 +170,8 @@
   %
   \def\@author{{%
     #1%
-    \hspace{0.5\orcidlogowidth}%
-    \href{https://orcid.org/#3}{\orcidlogo{\orcidlogowidth}}%
+    \hspace{0.5\orcidiconwidth}%
+    \href{https://orcid.org/#3}{\orcidicon{\orcidiconwidth}}%
     }{#2}}%
 }%
 \def\@author@add@orcid{\expandafter\@author@add@orcid@\@author}%
@@ -199,7 +199,7 @@
   \begin{itemize}[
     itemsep=-1mm,
     leftmargin=\dimexpr0.3cm+\labelsep\relax,
-    label={\smash{\orcidlogo{8pt}}}
+    label={\smash{\orcidicon{\orcidiconwidth}}}
     ]
   \input{\jobname.looi}
   \end{itemize}

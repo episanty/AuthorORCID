@@ -79,11 +79,12 @@ This package adds support for ORCID iDs to the REVTeX class. It provides the fol
 
 \begin{itemize}
 \item
-An \verb|\orcidlogo{width}| command, which produces the ORCID logo at the specified width: small, \orcidlogo{8pt}, or bigger:
+An \verb|\orcidicon{width}| command, which produces the ORCID iD icon at the specified width: small, \orcidicon{8pt}, or bigger:
 
-\orcidlogo{50pt}
+\orcidicon{50pt}
 
 This graphic is produced within \texttt{tikz}, and it is a transcription of the SVG version.
+The default width for the icon is 8pt, and it is encoded as the \verb|\orcidiconwidth| length.
 
 \item
 An \verb|\orcid{orcid-id}| command, which can be added after each \verb|\author| with the corresponding numerical iD. 
