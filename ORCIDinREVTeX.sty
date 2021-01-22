@@ -23,7 +23,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{enumitem}
 
-
+%\RequirePackage{parselines}
 %\RequirePackage{fancyvrb}
 
 
@@ -105,13 +105,14 @@
 
 \makeatletter
 \newcommand{\@format@export@orcid}[2]{%
-  \@backslashchar item %
-  #1: %name
-  \@backslashchar href{https://orcid.org/#2}{#2}
+%  \item %
+%  #1: %name
+%  \@backslashchar href{https://orcid.org/#2}{#2}
+  {#1}{#2}
   }
 %
 \def\@export@orcid#1{%
-  \immediate\write\orcidoutput{#1}%
+  \immediate\write\orcidoutput{\detokenize\expandafter{#1}}%
   }
 \makeatother
 
@@ -156,20 +157,93 @@
 }
 \makeatother
 
+%\def\do#1#2{\item test (#1)(#2)}
 
+\makeatletter
+\def\@format@orcid@listing#1#2{%
+  \item 
+  #1: #2.
+  \foo{#1}, \foo{#2}
+  \wlog{logging author:.\detokenize{#1}.}
+  \wlog{logging number:.\detokenize{#2}.}
+  %\showthe{#1}
+  %\showthe{logging number}
+  %\showthe{#2}
+  }
+\makeatother
+
+\RequirePackage{verbatim}
+\usepackage{etoolbox}
+\RequirePackage{ifmtarg}
+
+%\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
+%\def \ifempty#1{\def\temp{#1} \ifx\temp{\relax }}
+%\def \mymacro#1{ \ifempty{#1} empty \else not empty \fi }
+%\def \mymacro#1{ \if{#1}{\relax} empty \else Not Empty \fi }
+\def \mymacro#1{ \ifstrempty{#1} empty \else not empty \fi }
+
+\makeatletter
+\newcommand{\Test}[1]{%
+    \@ifmtarg{#1}{empty}{not empty}%
+}
+\makeatother
+
+\def\foo#1{%\par \texttt{<\detokenize{#1}>} 
+\expandafter\if\relax\detokenize\expandafter{\romannumeral0#1}\relax
+\if X#1X%
+empty\else
+not empty\fi
+\else
+not empty\fi}
+
+\makeatletter
 \newcommand{\listoforcidids}{
   \immediate\closeout\orcidoutput%
+  %\let\do##1##2{\item test (##1)(##2)}
   \section*{\orcididsectiontitle}
   \begin{itemize}[
     itemsep=-1mm,
     leftmargin=\dimexpr0.3cm+\labelsep\relax,
     label={\smash{\orcidicon{\orcidiconwidth}}}
     ]
-  \input{\jobname.looi}
+  \item{}
+  %\input{\jobname.looi}
+  %
+  %\def\do##1{\ifx\par#1\else \addto@hook\mytoken{##1}\fi}%
+  %\def\do#1{(#1)}
+  %\dofilebyline*{\jobname.looi}
+  %
+%  \newread\file
+%    \openin\file=\jobname.looi
+%    \loop\unless\ifeof\file
+%        \read\file to\fileline % Reads a line of the file into \fileline
+%            \item token\ \fileline \ 
+%            %\expandafter \@format@orcid@listing\fileline
+%    \repeat
+%  \closein\file
+  %
+  \newread\file
+  \openin\file=\jobname.looi \relax
+  {\endlinechar-1
+  \loop\unless\ifeof\file
+    \read\file to\fileline % Reads a line of the file into \fileline
+      %\item token\ \fileline \ 
+      \expandafter \@format@orcid@listing\fileline
+  \repeat}
+  \closein\file
   \end{itemize}
 }
+\makeatother
 
-
+\def\readtolog#1{% LOGIC NEEDED TO REMOVE TRAILING \par
+  \openin\customfile=#1\relax
+  {\endlinechar-1
+  \loop\unless\ifeof\customfile
+    \read\customfile to\fileline
+    \typeout{\fileline}
+  \repeat}%
+  \closein\customfile
+}
 
 
 
