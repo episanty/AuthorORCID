@@ -163,9 +163,10 @@
   \if X#2X%
   {}% if line is empty don't retyrn anything
   \else
-  \item #1: #2\fi %this probably doesn't get used?
+  \item #1: \href{https://orcid.org/#2}{#2}\fi 
+  %this probably doesn't get used?
   \else
-  \item #1: #2\fi%
+  \item #1: \href{https://orcid.org/#2}{#2}\fi%
   }
 \makeatother
 
