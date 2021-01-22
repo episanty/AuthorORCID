@@ -24,6 +24,9 @@
 \RequirePackage{enumitem}
 
 
+%\RequirePackage{fancyvrb}
+
+
 \ProcessOptions\relax
 
 
@@ -98,46 +101,6 @@
 \newwrite\orcidoutput
 \immediate\openout\orcidoutput=\jobname.looi
 
-
-%%% redefining the ltfxfront function \@author@finish to close the \orcidoutput stream when we're done writing to file.
-%
-\makeatletter
-\def\@author@finish{%
- \frontmatterverbose@sw{\typeout{\string\@author@finish}}{}%
- \move@AU\move@AF
- \@ifx{\AU@grp\@empty}{%
-  \@ifx{\CO@grp\@empty}%
- }{%
-  \false@sw
- }%
- {}{%
-  \@ifx{\AF@grp\@empty}{%
-   \begingroup
-    \let\href\@secondoftwo
-    \let\AU@opr\@secondofthree
-    \let\CO@opr\@secondofthree
-    \let\footnote\@gobble
-    \@ifx{\CO@grp\@empty}{%
-     \class@warn{Assuming \string\noaffiliation\space for authors}%
-     \frontmatterverbose@sw{\say\AU@grp}%
-    }{%
-     \class@warn{Assuming \string\noaffiliation\space for collaboration}%
-     \frontmatterverbose@sw{\say\CO@grp}{}%
-    }%
-   \endgroup
-   \@affil@none\move@AF
-  }{}%
- }%
- \move@AUAF%
- %
- %%% new code:
- %
- %\immediate\closeout\orcidoutput%
-}%
-\makeatother
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \makeatletter
