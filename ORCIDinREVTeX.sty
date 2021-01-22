@@ -132,7 +132,7 @@
  %
  %%% new code:
  %
- \immediate\closeout\orcidoutput%
+ %\immediate\closeout\orcidoutput%
 }%
 \makeatother
 
@@ -195,6 +195,7 @@
 
 
 \newcommand{\listoforcidids}{
+  \immediate\closeout\orcidoutput%
   \section*{\orcididsectiontitle}
   \begin{itemize}[
     itemsep=-1mm,
