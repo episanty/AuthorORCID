@@ -105,9 +105,6 @@
 
 \makeatletter
 \newcommand{\@format@export@orcid}[2]{%
-%  \item %
-%  #1: %name
-%  \@backslashchar href{https://orcid.org/#2}{#2}
   {#1}{#2}
   }
 %
@@ -157,22 +154,6 @@
 }
 \makeatother
 
-%\def\do#1#2{\item test (#1)(#2)}
-
-%\makeatletter
-%\def\@format@orcid@listing#1#2{%
-%  \item 
-%  #1: #2.
-%%
-%%
-%%  \testemptystring{#1}, \testemptystring{#2}
-%%  \wlog{logging author:.\detokenize{#1}.}
-%%  \wlog{logging number:.\detokenize{#2}.}
-%  %\showthe{#1}
-%  %\showthe{logging number}
-%  %\showthe{#2}
-%  }
-%\makeatother
 
 
 \makeatletter
@@ -182,37 +163,12 @@
   \if X#2X%
   {}% if line is empty don't retyrn anything
   \else
-  \item #1: #2\fi
+  \item #1: #2\fi %this probably doesn't get used?
   \else
-  \item #1: #2, not empty\fi%
+  \item #1: #2\fi%
   }
 \makeatother
 
-
-%\RequirePackage{verbatim}
-%\usepackage{etoolbox}
-%\RequirePackage{ifmtarg}
-
-%\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
-%\def \ifempty#1{\def\temp{#1} \ifx\temp{\relax }}
-%\def \mymacro#1{ \ifempty{#1} empty \else not empty \fi }
-%\def \mymacro#1{ \if{#1}{\relax} empty \else Not Empty \fi }
-%\def \mymacro#1{ \ifstrempty{#1} empty \else not empty \fi }
-
-%\makeatletter
-%\newcommand{\Test}[1]{%
-%    \@ifmtarg{#1}{empty}{not empty}%
-%}
-%\makeatother
-
-%\def\testemptystring#1{
-%  \expandafter\if\relax\detokenize\expandafter{\romannumeral0#1}\relax
-%  \if X#1X%
-%  empty\else
-%  not empty\fi
-%  \else
-%  not empty\fi%
-%  }
 
 \makeatletter
 \newcommand{\listoforcidids}{
@@ -227,9 +183,8 @@
   \openin\file=\jobname.looi \relax
   {\endlinechar-1
   \loop\unless\ifeof\file
-    \read\file to\fileline % Reads a line of the file into \fileline
-      %\item token\ \fileline \ 
-      \expandafter \@format@orcid@listing\fileline
+    \read\file to\fileline
+      \expandafter\@format@orcid@listing\fileline
   \repeat}
   \closein\file
   \end{itemize}
