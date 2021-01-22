@@ -159,69 +159,70 @@
 
 %\def\do#1#2{\item test (#1)(#2)}
 
+%\makeatletter
+%\def\@format@orcid@listing#1#2{%
+%  \item 
+%  #1: #2.
+%%
+%%
+%%  \testemptystring{#1}, \testemptystring{#2}
+%%  \wlog{logging author:.\detokenize{#1}.}
+%%  \wlog{logging number:.\detokenize{#2}.}
+%  %\showthe{#1}
+%  %\showthe{logging number}
+%  %\showthe{#2}
+%  }
+%\makeatother
+
+
 \makeatletter
 \def\@format@orcid@listing#1#2{%
-  \item 
-  #1: #2.
-  \foo{#1}, \foo{#2}
-  \wlog{logging author:.\detokenize{#1}.}
-  \wlog{logging number:.\detokenize{#2}.}
-  %\showthe{#1}
-  %\showthe{logging number}
-  %\showthe{#2}
+  % testing for empty lines as per tex.se/a/212748
+  \expandafter\if\relax\detokenize\expandafter{\romannumeral0#2}\relax
+  \if X#2X%
+  {}% if line is empty don't retyrn anything
+  \else
+  \item #1: #2\fi
+  \else
+  \item #1: #2, not empty\fi%
   }
 \makeatother
 
-\RequirePackage{verbatim}
-\usepackage{etoolbox}
-\RequirePackage{ifmtarg}
+
+%\RequirePackage{verbatim}
+%\usepackage{etoolbox}
+%\RequirePackage{ifmtarg}
 
 %\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
 %\def \ifempty#1{\def\temp{#1} \ifx\temp{\relax }}
 %\def \mymacro#1{ \ifempty{#1} empty \else not empty \fi }
 %\def \mymacro#1{ \if{#1}{\relax} empty \else Not Empty \fi }
-\def \mymacro#1{ \ifstrempty{#1} empty \else not empty \fi }
+%\def \mymacro#1{ \ifstrempty{#1} empty \else not empty \fi }
 
-\makeatletter
-\newcommand{\Test}[1]{%
-    \@ifmtarg{#1}{empty}{not empty}%
-}
-\makeatother
+%\makeatletter
+%\newcommand{\Test}[1]{%
+%    \@ifmtarg{#1}{empty}{not empty}%
+%}
+%\makeatother
 
-\def\foo#1{%\par \texttt{<\detokenize{#1}>} 
-\expandafter\if\relax\detokenize\expandafter{\romannumeral0#1}\relax
-\if X#1X%
-empty\else
-not empty\fi
-\else
-not empty\fi}
+%\def\testemptystring#1{
+%  \expandafter\if\relax\detokenize\expandafter{\romannumeral0#1}\relax
+%  \if X#1X%
+%  empty\else
+%  not empty\fi
+%  \else
+%  not empty\fi%
+%  }
 
 \makeatletter
 \newcommand{\listoforcidids}{
   \immediate\closeout\orcidoutput%
-  %\let\do##1##2{\item test (##1)(##2)}
   \section*{\orcididsectiontitle}
   \begin{itemize}[
     itemsep=-1mm,
     leftmargin=\dimexpr0.3cm+\labelsep\relax,
     label={\smash{\orcidicon{\orcidiconwidth}}}
     ]
-  \item{}
-  %\input{\jobname.looi}
-  %
-  %\def\do##1{\ifx\par#1\else \addto@hook\mytoken{##1}\fi}%
-  %\def\do#1{(#1)}
-  %\dofilebyline*{\jobname.looi}
-  %
-%  \newread\file
-%    \openin\file=\jobname.looi
-%    \loop\unless\ifeof\file
-%        \read\file to\fileline % Reads a line of the file into \fileline
-%            \item token\ \fileline \ 
-%            %\expandafter \@format@orcid@listing\fileline
-%    \repeat
-%  \closein\file
-  %
   \newread\file
   \openin\file=\jobname.looi \relax
   {\endlinechar-1
@@ -235,15 +236,6 @@ not empty\fi}
 }
 \makeatother
 
-\def\readtolog#1{% LOGIC NEEDED TO REMOVE TRAILING \par
-  \openin\customfile=#1\relax
-  {\endlinechar-1
-  \loop\unless\ifeof\customfile
-    \read\customfile to\fileline
-    \typeout{\fileline}
-  \repeat}%
-  \closein\customfile
-}
 
 
 
