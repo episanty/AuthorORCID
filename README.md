@@ -20,11 +20,11 @@ The ORCIDinREVTeX package is a prototype LaTeX package for the REVTeX class whic
 
  - An `\listoforcidids` command, which produces an unnumbered section listing all the author ORCID iDs, suitably hyperlinked.
 
-To use the package, add the `authororcid.sty` file somewhere where LaTeX will find it, and add the line `\usepackage{authororcid}` to your preamble.
+To use the package, add the `ORCIDinREVTeX.sty` file somewhere where LaTeX will find it, and add the line `\usepackage{ORCIDinREVTeX}` to your preamble.
 
 It basically looks as follows:
 
-[<img src="https://github.com/episanty/authororcid/raw/master/ORCIDinREVTeX.png" width="600" title="First page of the template">](https://github.com/episanty/authororcid/blob/master/authororcid.pdf)
+[<img src="https://github.com/episanty/ORCIDinREVTeX/raw/master/ORCIDinREVTeX.png" width="600" title="First page of the template">](https://github.com/episanty/authororcid/blob/master/authororcid.pdf)
 
 This package calls on the `tikz`, `xcolor` and `enumitem` packages as dependences. For the hyperlinks to work, the `hyperref` package is highly recommendable (but not loaded automatically).
 
