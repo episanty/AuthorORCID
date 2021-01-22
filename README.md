@@ -24,7 +24,7 @@ To use the package, add the `authororcid.sty` file somewhere where LaTeX will fi
 
 It basically looks as follows:
 
-[<img src="https://github.com/episanty/authororcid/raw/master/authororcid.png" width="600" title="First page of the template">](https://github.com/episanty/authororcid/blob/master/authororcid.pdf)
+[<img src="https://github.com/episanty/authororcid/raw/master/ORCIDinREVTeX.png" width="600" title="First page of the template">](https://github.com/episanty/authororcid/blob/master/authororcid.pdf)
 
 This package calls on the `tikz`, `xcolor` and `enumitem` packages as dependences. For the hyperlinks to work, the `hyperref` package is highly recommendable (but not loaded automatically).
 
